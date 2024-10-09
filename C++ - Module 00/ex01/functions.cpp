@@ -22,7 +22,7 @@ void    PhoneBook::SEARCH()
 	if (this->num_contact == 0)
     {
 		std::cout << RED;
-        std::cerr << "No contacts found. You will be returned to the menu." << std::endl;
+        std::cerr << "No contacts found. Returning to menu." << std::endl;
 		return ;
     }
     std::cout << BLUE << "---------------------------------------------------------" << std::endl;
@@ -49,7 +49,7 @@ void    PhoneBook::SEARCH()
         i++;
     }
     std::cout << BLUE << "---------------------------------------------------------\n" << std::endl;
-	std::cout << GREEN << "Please enter the index of the contact you wish to display: ";
+	std::cout << GREEN << "Enter contact index to display:";
 	while (true)
 	{
 
@@ -65,9 +65,9 @@ void    PhoneBook::SEARCH()
 			std::cerr << "please enter a integer : ";
 		}
 		else if (stoi(input) > this->num_contact - 1 && this->num_contact == 1)
-			std::cerr << RED << "Only one contact found. You should enter 0 to view the information: ";
+			std::cerr << RED << "Only one contact found. Enter [0] to view details:";
 		else if (stoi(input) > this->num_contact - 1)
-			std::cerr << RED << "you should enter a index between 0 and " << this->num_contact - 1 << ": ";
+			std::cerr << RED << "Please enter an index between 0 and " << this->num_contact - 1 << ": ";
 		else
 			break;
 	}

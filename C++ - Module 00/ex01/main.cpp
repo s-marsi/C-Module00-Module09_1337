@@ -19,7 +19,7 @@ bool	input_info(std::string msg, std::string* arg)
 		if (!std::getline(std::cin, *arg))
 		{
             std::cout << RED;
-       		std::cerr << "Operation canceled: No contacts were added. The program has stopped. ";
+       		std::cerr << "Operation canceled.";
 			return (true);
 		}
         if (!((*arg).empty() || is_only_withspace(*arg)))

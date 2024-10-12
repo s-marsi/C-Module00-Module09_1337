@@ -4,12 +4,14 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = BraiiiiiiinnnzzzZ
 
-SRC = 
+SRC = main.cpp ZombieFunctions.cpp
 
-OBJ = $(SRC:.c=.o)
+OBJ = $(SRC:.cpp=.o)
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) -o  $? $<
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+
+all : fclean 
 
 clean :
 	rm -f $(OBJ)
@@ -17,6 +19,4 @@ clean :
 fclean : clean
 	rm -f $(NAME)
 
-all : fclean 
-
-
+re : fclean $(NAME)

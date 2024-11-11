@@ -19,21 +19,12 @@ class PhoneBook
 {
 	private :
     	Contact contacts[MAX_CONTACT];
-		static int	index;
-		static int	num_contact;
+		int	index;
+		int	num_contact;
 	public :
-		PhoneBook()
-		{
-			index = 0;
-		}
-		int getIndex()
-		{
-			return index;
-		}
-		void setIndex()
-		{
-			index++;
-		}
+		PhoneBook();
+		int getIndex();
+		void setIndex();
 		void ADD(std::string  firstName, std::string  lastName, std::string  nickName, std::string  phoneNumber, std::string  darkestSecret);
 		void SEARCH();
 		void EXIT();

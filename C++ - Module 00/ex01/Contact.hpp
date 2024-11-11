@@ -5,29 +5,25 @@
 #include <iomanip>
 #include <stdlib.h>
 
-class Contact
+class   Contact
 {
-	private :
-		std::string	firstName;
-		std::string	lastName;
-		std::string	nickName;
-		std::string	phoneNumber;
-		std::string	darkestSecret;
-	public :
-		// ------------ GETTERS -----------------------
-		std::string	getFisrtName();
-		std::string getLastName();
-		std::string getNickName();
-		std::string getPhoneNumber();
-		std::string getDarkestSecret();
+    std::string firstName;
+    std::string lastName;
+    std::string nickName;
+    std::string phoneNumber;
+    std::string darkestSecret;
+    public: 
+        std::string getFirstName();
+        std::string getLastName();
+        std::string getNickName();
+        std::string getPhoneNumber();
+        std::string getDarkestSecret();
+        void setFirstName(std::string value);
+        void setLastName(std::string value);
+        void setNickName(std::string value);
+        void setPhoneNumber(std::string value);
+        void setDarkestSecret(std::string value);
 
-		// -------------------- SETTERS --------------------------
-
-		void	setFisrtName(std::string fName);
-		void	setLastName(std::string lName);
-		void	setNickName(std::string nName);
-		void	setPhoneNumber(std::string pNumber);
-		void	setDarkestSecret(std::string dSecret);
 };
 
 #endif

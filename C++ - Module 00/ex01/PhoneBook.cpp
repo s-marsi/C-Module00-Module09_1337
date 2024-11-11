@@ -2,102 +2,63 @@
 
 PhoneBook::PhoneBook()
 {
-	index = 0;
+    contact_index = 0;
+    contact_number = 0;
 }
 
-int PhoneBook::getIndex()
+void	PhoneBook::ADD()
 {
-	return (index);
-}
-
-void PhoneBook::setIndex()
-{
-	index++;
-}
-
-void    PhoneBook::ADD(std::string  firstName, std::string  lastName, std::string  nickName, std::string  phoneNumber, std::string  darkestSecret)
-{
-    this->contacts[this->index].setFisrtName(firstName);
-    this->contacts[this->index].setLastName(lastName);
-    this->contacts[this->index].setNickName(nickName);
-    this->contacts[this->index].setPhoneNumber(phoneNumber);
-    this->contacts[this->index].setDarkestSecret(darkestSecret);
-	if (this->num_contact < MAX_CONTACT)
-		this->num_contact++;
-    if (this->index == MAX_CONTACT - 1)
-        this->index = 0;
+    Contact contact;
+    std::string input;
+    if (get_input("first name: ", &input))
+        EXIT();
+    contact.setFirstName(input);
+    if (get_input("last name: ", &input))
+        EXIT();
+    contact.setLastName(input);
+    if (get_input("nick name: ", &input))
+        EXIT();
+    contact.setNickName(input);
+    if (get_input("phone number: ", &input))
+        EXIT();
+    contact.setPhoneNumber(input);
+    if (get_input("darkest secret: ", &input))
+        EXIT();
+    contact.setDarkestSecret(input);
+    contacts[contact_index] = contact;
+    std::cout << RED << contact_index << std::endl;
+    if (contact_number < MAX_CONTACT)
+        contact_number++;
+    if (contact_index == MAX_CONTACT - 1)
+        contact_index = 0;
     else
-        this->index++;
+        contact_index++;
 }
-
-void    PhoneBook::SEARCH()
+void	PhoneBook::SEARCH()
 {
     int i = 0;
 	std::string	input;
-	if (this->num_contact == 0)
+	if (contact_number == 0)
     {
-		std::cout << RED;
-        std::cerr << "No contacts found. Returning to menu." << std::endl;
+        std::cerr << RED << "No contacts found. Returning to menu." << std::endl;
 		return ;
     }
-    std::cout << BLUE << "---------------------------------------------------------" << std::endl;
-	std::cout << DEFAULT;
-    std::cout.width(10);std::right;
-    std::cout << "index" << "|";
-    std::cout.width(10);std::right;
-    std::cout << "firstName" << "|";
-    std::cout.width(10);std::right;
-    std::cout << "lastName" << "|";
-    std::cout.width(10);std::right;
-    std::cout << "nickName" << std::endl;
-    while (i < this->num_contact)
+    print_header();
+    while (i < contact_number)
     {
         std::cout.width(10);std::right;
         std::cout << i << "|";
         std::cout.width(10);std::right;
-        std::cout << truncateText(this->contacts[i].getFisrtName()) << "|";
+        std::cout << truncateText(contacts[i].getFirstName()) << "|";
 
         std::cout.width(10);std::right;
-        std::cout << truncateText(this->contacts[i].getLastName()) << "|";;
+        std::cout << truncateText(contacts[i].getLastName()) << "|";;
         std::cout.width(10);std::right;
-        std::cout << truncateText(this->contacts[i].getNickName())  << "\n";;
+        std::cout << truncateText(contacts[i].getNickName())  << "\n";;
         i++;
     }
     std::cout << BLUE << "---------------------------------------------------------\n" << std::endl;
-	std::cout << GREEN << "Enter contact index to display:";
-	while (true)
-	{
-
-		std::cout << DEFAULT;
-		if (!getline(std::cin, input))
-		{
-			std::cerr << RED <<   "Operation canceled. ";
-			this->EXIT();
-		}
-		else if (input.empty() || !is_integer(input))
-		{
-			std::cerr << RED;
-			std::cerr << "please enter a integer : ";
-		}
-		else if (stoi(input) > this->num_contact - 1 && this->num_contact == 1)
-			std::cerr << RED << "Only one contact found. Enter [0] to view details:";
-		else if (stoi(input) > this->num_contact - 1)
-			std::cerr << RED << "Please enter an index between 0 and " << this->num_contact - 1 << ": ";
-		else
-			break;
-	}
-	i = stoi(input);
-	std::cout << BLUE << "---------------------------------------------------------\n" << std::endl;
-	std::cout << DEFAULT;
-	std::cout << std::setw(18) << std::right << "Index:  "         << std::setw(10) << std::right << i << std::endl;
-	std::cout << std::setw(18) << std::right << "First Name:  "    << std::setw(10) << std::right << this->contacts[i].getFisrtName() << std::endl;
-	std::cout << std::setw(18) << std::right << "Last Name:  "     << std::setw(10) << std::right << this->contacts[i].getLastName() << std::endl;
-	std::cout << std::setw(18) << std::right << "Nickname:  "      << std::setw(10) << std::right << this->contacts[i].getNickName() << std::endl;
-	std::cout << std::setw(18) << std::right << "Phone Number:  "  << std::setw(10) << std::right << this->contacts[i].getPhoneNumber() << std::endl;
-	std::cout << std::setw(18) << std::right << "Darkest Secret:  "<< std::setw(10) << std::right << this->contacts[i].getDarkestSecret() << std::endl;
-	std::cout << BLUE << "---------------------------------------------------------\n" << std::endl;
 }
-
 void	PhoneBook::EXIT()
 {
     std::cout << DEFAULT << "Goodbye!" << std::endl;

@@ -10,24 +10,20 @@
 #define   WHITE "\033[37m"
 #define DEFAULT "\033[0m"
 
+bool	get_input(std::string  msg, std::string*  input);
+void	print_header();
 std::string	truncateText(std::string text);
-bool	is_integer(std::string	number);
-bool	is_only_alpha(std::string	str);
-bool	is_valid_phone_number(std::string	number);
-
-class PhoneBook
+class	PhoneBook
 {
-	private :
-    	Contact contacts[MAX_CONTACT];
-		int	index;
-		int	num_contact;
-	public :
+	Contact	contacts[MAX_CONTACT];
+	int	contact_number;
+	int	contact_index;
+
+	public:
 		PhoneBook();
-		int getIndex();
-		void setIndex();
-		void ADD(std::string  firstName, std::string  lastName, std::string  nickName, std::string  phoneNumber, std::string  darkestSecret);
-		void SEARCH();
-		void EXIT();
+		void	ADD();
+		void	SEARCH();
+		void	EXIT();
 };
 
 

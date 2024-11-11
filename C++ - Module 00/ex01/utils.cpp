@@ -1,46 +1,39 @@
 #include "PhoneBook.hpp"
 
+bool	get_input(std::string  msg, std::string*  input)
+{
+	std::cout << GREEN << "enter the " << msg;
+    while (true)
+    {
+        std::cout << DEFAULT;
+        std::getline(std::cin, *input);
+        if (std::cin.eof())
+        {
+       		std::cerr << RED << "Operation canceled.";
+			return (true);
+        }
+        if (!(*input).empty())
+            break;
+        std::cout << RED << "enter a valid " << msg;
+    }
+	return (false);
+}
+
 std::string	truncateText(std::string text)
 {
 	return (text.length() <= 10? text : text.substr(0, 9) + ".");
 }
 
-bool	is_integer(std::string	number)
+void	print_header()
 {
-	int	i = 0;
-
-	if (number[0] == '-' || number[0] == '+')
-		i++;
-	for (i; i < number.length(); i++)
-	{
-		if (!isdigit(number[i]))
-			return (false);
-	}
-	return (true);
-}
-
-bool	is_only_alpha(std::string	str)
-{
-	int	i = 0;
-
-	for (i; i < str.length(); i++)
-	{
-		if (isdigit(str[i]))
-			return (false);
-	}
-	return (true);
-}
-
-bool	is_valid_phone_number(std::string	number)
-{
-	int	i = 0;
-
-	if (number[0] == '+')
-		i++;
-	for (i; i < number.length(); i++)
-	{
-		if (!isdigit(number[i]))
-			return (false);
-	}
-	return (true);
+	std::cout << BLUE << "---------------------------------------------------------" << std::endl;
+	std::cout << DEFAULT;
+    std::cout.width(10);std::right;
+    std::cout << "index" << "|";
+    std::cout.width(10);std::right;
+    std::cout << "firstName" << "|";
+    std::cout.width(10);std::right;
+    std::cout << "lastName" << "|";
+    std::cout.width(10);std::right;
+    std::cout << "nickName" << std::endl;
 }

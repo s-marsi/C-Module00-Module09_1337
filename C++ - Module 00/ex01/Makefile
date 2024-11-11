@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = phonebook
 
-SRC = main.cpp ContactGettersSetters.cpp functions.cpp utils.cpp
+SRC = main.cpp Contact.cpp PhoneBook.cpp utils.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

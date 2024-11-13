@@ -1,30 +1,23 @@
-#ifndef PHONEBOOK_H
-#define PHONEBOOK_H
-#include "Contact.hpp"
-#define MAX_CONTACT 8
-#define   BLACK "\033[30m"  
-#define     RED "\033[31m"  
-#define   GREEN "\033[32m"
-#define  YELLOW "\033[33m"
-#define    BLUE "\033[34m"
-#define   WHITE "\033[37m"
-#define DEFAULT "\033[0m"
+#ifndef PHONEBOOK_HPP
+#define PHONEBOOK_HPP
+#define MAX_CONTACTS 8
 
-bool	get_input(std::string  msg, std::string*  input);
-void	print_header();
-std::string	truncateText(std::string text);
+#include "Contact.hpp"
+bool	user_input(std::string msg, std::string *input);
+void	print_header( void );
+void	print_body(Contact *contact, int i);
+bool	get_index(std::string *input, int contact_count);
+
 class	PhoneBook
 {
-	Contact	contacts[MAX_CONTACT];
-	int	contact_number;
-	int	contact_index;
-
-	public:
-		PhoneBook();
-		void	ADD();
-		void	SEARCH();
-		void	EXIT();
+	Contact contacts[MAX_CONTACTS];
+    int     contact_count;
+    int     contact_index;
+	public: 
+        PhoneBook( void );
+		void	ADD( void );
+		void	SEARCH( void );
+		void	EXIT( void );
 };
-
 
 #endif

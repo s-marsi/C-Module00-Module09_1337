@@ -11,8 +11,6 @@
 #pragma once
 #ifndef __ACCOUNT_H__
 #define __ACCOUNT_H__
-#include <iostream>
-#include <iterator>
 
 // ************************************************************************** //
 //                               Account Class                                //
@@ -38,6 +36,7 @@ public:
 	bool	makeWithdrawal( int withdrawal );
 	int		checkAmount( void ) const;
 	void	displayStatus( void ) const;
+
 
 private:
 

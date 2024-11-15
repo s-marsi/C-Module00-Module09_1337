@@ -1,18 +1,18 @@
-CC = c++
+CXX = c++
 
-CFLAG = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+ 
+NAME = logFile
 
-NAME = lostFile
+FILES = Account.cpp tests.cpp
 
-SRC = Account.cpp tests.cpp
+FILES_O = $(FILES:.cpp=.o)
 
-OBJ = $(SRC:.cpp=.o)
+$(NAME) : $(FILES_O)
+	$(CXX) $(CXXFLAGS) $(FILES_O) -o $(NAME)
 
-$(NAME) : $(OBJ)
-	$(CC) $(CFLAG) -o $(NAME) $(OBJ)
-
-clean :
-	rm -f $(OBJ)
+clean : 
+	rm -f $(FILES_O)
 
 fclean : clean
 	rm -f $(NAME)

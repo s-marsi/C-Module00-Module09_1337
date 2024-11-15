@@ -1,66 +1,75 @@
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook()
+PhoneBook::PhoneBook( void )
 {
-    contact_index = 0;
-    contact_number = 0;
+	contact_count = 0;
+	contact_index = 0;
 }
 
-void	PhoneBook::ADD()
+void	PhoneBook::ADD( void )
 {
-    Contact contact;
-    std::string input;
-    if (get_input("first name: ", &input))
-        EXIT();
-    contact.setFirstName(input);
-    if (get_input("last name: ", &input))
-        EXIT();
-    contact.setLastName(input);
-    if (get_input("nick name: ", &input))
-        EXIT();
-    contact.setNickName(input);
-    if (get_input("phone number: ", &input))
-        EXIT();
-    contact.setPhoneNumber(input);
-    if (get_input("darkest secret: ", &input))
-        EXIT();
-    contact.setDarkestSecret(input);
-    contacts[contact_index] = contact;
-    std::cout << RED << contact_index << std::endl;
-    if (contact_number < MAX_CONTACT)
-        contact_number++;
-    if (contact_index == MAX_CONTACT - 1)
-        contact_index = 0;
-    else
-        contact_index++;
-}
-void	PhoneBook::SEARCH()
-{
-    int i = 0;
+	Contact	new_contact;
 	std::string	input;
-	if (contact_number == 0)
-    {
-        std::cerr << RED << "No contacts found. Returning to menu." << std::endl;
-		return ;
-    }
-    print_header();
-    while (i < contact_number)
-    {
-        std::cout.width(10);std::right;
-        std::cout << i << "|";
-        std::cout.width(10);std::right;
-        std::cout << truncateText(contacts[i].getFirstName()) << "|";
 
-        std::cout.width(10);std::right;
-        std::cout << truncateText(contacts[i].getLastName()) << "|";;
-        std::cout.width(10);std::right;
-        std::cout << truncateText(contacts[i].getNickName())  << "\n";;
-        i++;
-    }
-    std::cout << BLUE << "---------------------------------------------------------\n" << std::endl;
+	if (user_input("first name: ", &input))
+		EXIT();
+	new_contact.setFirstName(input);
+	if (user_input("last name: ", &input))
+		EXIT();
+	new_contact.setlastName(input);
+	if (user_input("nickname: ", &input))
+		EXIT();
+	new_contact.setNickname(input);
+	if (user_input("phone number: ", &input))
+		EXIT();
+	new_contact.setPhoneNumber(input);
+	if (user_input("darkest secret: ", &input))
+		EXIT();
+	new_contact.setDarkestSecret(input);
+	contacts[contact_index] = new_contact;
+	if (contact_count < MAX_CONTACTS)
+		contact_count++;
+	if (contact_index == MAX_CONTACTS - 1)
+		contact_index = 0;
+	else
+		contact_index++;
 }
-void	PhoneBook::EXIT()
+
+void	PhoneBook::SEARCH( void )
 {
-    std::cout << DEFAULT << "Goodbye!" << std::endl;
-    exit (0);
+	std::string	input;
+	int	index;
+
+	if (contact_count == 0)
+	{
+		std::cout << RED << "No contacts found. Returning to menu." << std::endl;
+		return ;
+	}
+	print_header();
+	for (int i = 0; i < contact_count; i++)
+	{
+		print_body(&contacts[i], i);
+	}
+	std::cout << std::endl;
+	if (get_index(&input, contact_count))
+		EXIT();
+	std::stringstream	strToInt;
+	strToInt << input;
+	strToInt >> index;
+	if (index >= 0 && index < contact_count)
+	{
+		std::cout << DEFAULT << std::endl\
+		<< "Index         : " << index << std::endl\
+		<< "First Name    : " << contacts[index].getFirstName() << std::endl\
+		<< "Last Name     : " <<contacts[index].getlastName() << std::endl\
+		<< "Nickame       : " <<contacts[index].getNickname() << std::endl\
+		<< "Phone number  : " <<contacts[index].getPhoneNumber() << std::endl\
+		<< "Darkest secret: " <<contacts[index].getDarkestSecret() << std::endl;\
+	}
+	std::cout << std::endl << std::endl;
+}
+
+void	PhoneBook::EXIT( void )
+{
+	exit (0);
 }

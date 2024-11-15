@@ -9,8 +9,10 @@
 #define DEFAULT "\033[0m"
 
 #include <iostream>
+#include <cstdlib>
 #include <iomanip>
 #include <limits>
+#include <sstream>
 
 class   Contact
 {

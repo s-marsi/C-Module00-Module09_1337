@@ -32,6 +32,7 @@ int	main()
             if (std::cin.eof())
             {
                 std::cout << RED << "\nOperation canceled.\n";
+                std::cout << DEFAULT; 
                 phone_book.EXIT();
             }
             if (isValidCommande(input))

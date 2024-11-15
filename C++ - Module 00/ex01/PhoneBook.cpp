@@ -53,7 +53,9 @@ void	PhoneBook::SEARCH( void )
 	std::cout << std::endl;
 	if (get_index(&input, contact_count))
 		EXIT();
-	index = std::stoi(input);
+	std::stringstream	strToInt;
+	strToInt << input;
+	strToInt >> index;
 	if (index >= 0 && index < contact_count)
 	{
 		std::cout << DEFAULT << std::endl\

@@ -1,6 +1,6 @@
-CC = c++
+CXX = c++
 
-CFLAGS = -Wall -Wextra -Werror
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
  
 NAME = logFile
 
@@ -9,7 +9,7 @@ FILES = Account.cpp tests.cpp
 FILES_O = $(FILES:.cpp=.o)
 
 $(NAME) : $(FILES_O)
-	$(CC) $(CFLAGS) $(FILES_O) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(FILES_O) -o $(NAME)
 
 clean : 
 	rm -f $(FILES_O)

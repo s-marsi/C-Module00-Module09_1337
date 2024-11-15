@@ -1,6 +1,6 @@
-CC = c++
+CXX = c++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = megaphone
 
@@ -9,7 +9,7 @@ FILES_C = megaphone.cpp
 FILES_O = $(FILES_C:.cpp=.o)
 
 $(NAME) : $(FILES_O)
-	$(CC) $(CFLAGS)  -o $(NAME) $(FILES_O)
+	$(CXX) $(CXXFLAGS)  -o $(NAME) $(FILES_O)
 
 all : $(NAME)
 

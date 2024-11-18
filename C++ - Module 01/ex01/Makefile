@@ -1,17 +1,15 @@
-CC = c++
+CXXC = c++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = Moar_brainz
+NAME = zombie
 
-SRC = main.cpp Zombie.cpp zombieHorde.cpp
+FILES =  Zombie.cpp zombieHorde.cpp main.cpp
 
-OBJ = $(SRC:.cpp=.o)
+OBJ = $(FILES:.cpp=.o)
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
-
-all : fclean 
+	$(CXXC) $(OBJ) -o $(NAME)
 
 clean :
 	rm -f $(OBJ)
@@ -19,4 +17,4 @@ clean :
 fclean : clean
 	rm -f $(NAME)
 
-re : fclean $(NAME)
+re  : fclean $(NAME)

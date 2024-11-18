@@ -7,4 +7,6 @@ int main()
     test.complain("INFO");
     test.complain("WARNING");
     test.complain("ERROR");
+    test.complain("");
+    return (0);
 }

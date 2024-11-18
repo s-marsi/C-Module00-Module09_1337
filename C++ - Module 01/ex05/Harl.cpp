@@ -1,40 +1,38 @@
 #include "Harl.hpp"
 
-typedef void (Harl::*ptr)();
+typedef void (Harl::*fun_ptr)( void );
 
-void Harl::debug( void )
+void	Harl::debug( void )
 {
-    std::cout << "[ DEBUG ]" << std::endl;
-    std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-specialketchup burger.\nI really do!\n" << std::endl;
-
-    
+    std::cout << BLUE << "[ DEBUG ]\n" << DEFAULT;
+    std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-specialketchup burger. I really do!\n";
 }
-void Harl::info( void )
+void	Harl::info( void )
 {
-    std::cout << BLUE << "[ INFO ]\n";
-    std::cout << DEFAULT << "I cannot believe adding extra bacon costs more money.\nYou didn't put enough bacon in my burger! If you did, I wouldn’t be asking for more!\n" << std::endl;
+    std::cout << GREEN << "[ INFO ]\n" << DEFAULT;
+    std::cout << "I cannot believe adding extra bacon costs more money.\n You didn't put enough bacon in my burger! If you did, I wouldn't be asking for more!\n";
 }
-void Harl::warning( void )
+void	Harl::warning( void )
 {
-    std::cout << YELLOW << "[ WARNING ]\n";
-    std::cout << DEFAULT << "I think I deserve to have some extra bacon for free.\nI've been coming for years whereas you started working here since last month.\n" << std::endl;
+    std::cout << YELLOW << "[ WARNING ]\n" << DEFAULT;
+    std::cout << "I think I deserve to have some extra bacon for free. \nI've been coming for years whereas you started working here since last month.\n";
 }
-void Harl::error( void )
+void	Harl::error( void )
 {
-    std::cout << RED << "[ ERROR ]\n";
-    std::cout << DEFAULT <<  "This is unacceptable! I want to speak to the manager now.\n"  << std::endl;
+    std::cout << RED << "[ ERROR ]\n" << DEFAULT;
+    std::cout << "This is unacceptable! I want to speak to the manager now.\n";
 }
-
-void Harl::complain( std::string level )
+void	Harl::complain( std::string level )
 {
-    std::string Levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-    ptr functptr[] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-    for (int i = 0; i < 4; i++)
-    {
-        if (Levels[i] == level)
-        {
-            (this->*functptr[i])();
-            break ;
-        }
-    }
+	fun_ptr ptr[] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+	std::string str[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	for (int i = 0; i < 4; i++)
+	{
+		if (str[i] == level)
+		{
+			(this->*ptr[i])();
+			return ;
+		}
+	}
+	std::cout << RED << "[ Probably complaining about insignificant problems ]\n" << DEFAULT;
 }

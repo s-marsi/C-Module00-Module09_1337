@@ -1,13 +1,33 @@
 #include "Zombie.hpp"
 
-Zombie::Zombie() : name("") {}
-
-void Zombie::announce( void )
+Zombie* Zombie::newZombie( std::string name )
 {
-    std::cout << (!name.empty() ? name : "NO_NAME") + ": BraiiiiiiinnnzzzZ..." << std::endl;
+    Zombie *new_zombie = new Zombie(name);
+    return (new_zombie);
 }
 
-Zombie::~Zombie()
+void 	Zombie::randomChump( std::string name)
 {
-    std::cout << (!name.empty() ? name : "NO_NAME") + ": destroyed." << std::endl;
+    Zombie new_zombie = Zombie(name);
+    new_zombie.announce();
+}
+
+void    Zombie::announce( void )
+{
+    std::cout << ((!name.empty()) ? name : "Braiiinz" ) << ": BraiiiiiiinnnzzzZ...\n";
+}
+
+void	Zombie::setName( std::string Name )
+{
+    name = Name;
+}
+
+Zombie::Zombie( void ) {};
+
+Zombie::Zombie( std::string Name) : name(Name) {};
+
+
+Zombie::~Zombie( void )
+{
+    std::cout << ((!name.empty()) ? name : "Braiiinz" )<< ": destroyed\n";
 }

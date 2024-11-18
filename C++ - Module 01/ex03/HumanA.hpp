@@ -1,18 +1,15 @@
 #ifndef HUMANA_HPP
 #define HUMANA_HPP
-#include <iostream>
+
 #include "Weapon.hpp"
 
-class HumanA
+class   HumanA
 {
-private:
-    std::string name;
-    Weapon      weapon;
-public:
-    HumanA(std::string name, Weapon weapon);
-    void    setWeapon(Weapon weapon);
-    void    attack();
-    ~HumanA();
+    std::string	name;
+    Weapon 		&weapon;
+	public:
+		HumanA( std::string Name, Weapon &init_weapon );
+		void	attack( void );
 };
 
 #endif
